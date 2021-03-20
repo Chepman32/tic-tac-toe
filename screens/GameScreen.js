@@ -106,7 +106,7 @@ class Game extends Component {
       try {
         const result = await Share.share({
           message:
-            IMLocalized('Checkout this awesome Tictactoe Game | https://play.google.com/store/apps/developer?id=Anton+Chepur'),
+            IMLocalized('Checkout this awesome Tictactoe Game in') + " Google Play | https://play.google.com/store/apps/developer?id=Anton+Chepur",
         });
         if (result.action === Share.sharedAction) {
           if (result.activityType) {

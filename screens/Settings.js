@@ -1,10 +1,5 @@
-// AsyncStorage in React Native to Store Data in Session
-// https://aboutreact.com/react-native-asyncstorage/
-
-// import React in our code
-import React, { useState } from 'react';
-
-// import all the components we are going to use
+import React, { useEffect, useState } from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,99 +7,81 @@ import {
   TextInput,
   Text,
   TouchableOpacity,
+  Vibration,
 } from 'react-native';
 
 // import AsyncStorage
 import AsyncStorage from '@react-native-community/async-storage';
+import { constants } from '../constants/Constants';
+import { IMLocalized } from '../localization';
 
-export const App = () => {
+export const App = ({navigation}) => {
   // To get the value from the TextInput
   const [textInputValue, setTextInputValue] = useState('');
   // To set the value on Text
-  const [getValue, setGetValue] = useState('');
-
-  const saveValueFunction = () => {
-    textInputValue && AsyncStorage.setItem('any_key_here', textInputValue);
+  const saveValueFunction = (text) => {
+    AsyncStorage.setItem('any_key_here', text);
+    text === "On" && Vibration.vibrate(50)
   };
-
-  const getValueFunction = () => {
-    //function to get the value from AsyncStorage
-    AsyncStorage.getItem('any_key_here').then(
-      (value) =>
-        //AsyncStorage returns a promise so adding a callback to get the value
-        setGetValue(value)
-      //Setting the value in Text
-    );
-  };
-
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <Text style={styles.titleText}>
-          AsyncStorage in React Native to Store Data in Session
-        </Text>
-        <TextInput
-          placeholder="Enter Some Text here"
-          value={textInputValue}
-          onChangeText={(data) => setTextInputValue(data)}
-          underlineColorAndroid="transparent"
-          style={styles.textInputStyle}
-        />
+      <Icon
+            style={styles.menuIcon}
+            name="menuunfold"
+            size={constants.MAX_WIDTH * 0.1}
+            color="lightgrey"
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+          />
         <TouchableOpacity
-          onPress={() => {
-            setTextInputValue("On")
-            saveValueFunction()
-            getValueFunction()
-          } }
+          onPress={() => saveValueFunction("On")}
           style={styles.buttonStyle}>
-          <Text style={styles.buttonTextStyle}> ON </Text>
+          <Text style={styles.buttonTextStyle}>{IMLocalized("VIBRATION ON")} </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {
-            setTextInputValue("Off")
-            saveValueFunction()
-            getValueFunction()
-          } }
+          onPress={() => saveValueFunction("Off")}
           style={styles.buttonStyle}>
-          <Text style={styles.buttonTextStyle}> OFF </Text>
+          <Text style={styles.buttonTextStyle}>{IMLocalized("VIBRATION OFF")} </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={getValueFunction} style={styles.buttonStyle}>
-          <Text style={styles.buttonTextStyle}> GET VALUE </Text>
-        </TouchableOpacity>
-        <Text style={styles.textStyle}> {getValue} </Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: 'white',
+    justifyContent: "center",
+    backgroundColor: '#000',
   },
-  titleText: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    paddingVertical: 20,
+  menuIcon: {
+    position: 'absolute',
+    top: constants.MAX_HEIGHT * 0.04,
+    left: constants.MAX_HEIGHT * 0.03,
+    // backgroundColor: '#000',
+    // color: '#fff',
+    zIndex: 999,
   },
   textStyle: {
     padding: 10,
     textAlign: 'center',
   },
   buttonStyle: {
-    fontSize: 16,
-    color: 'white',
-    backgroundColor: 'green',
-    padding: 5,
-    marginTop: 32,
-    minWidth: 250,
+    width: constants.MAX_WIDTH * 0.9,
+    marginVertical: constants.MAX_HEIGHT * 0.15,
+    padding: 10,
+    overflow: "hidden",
+    borderWidth: 4,
+    borderColor: "#fff",
+    borderRadius: 10
   },
   buttonTextStyle: {
-    padding: 5,
-    color: 'white',
-    textAlign: 'center',
+    fontSize: constants.MAX_HEIGHT * 0.05,
+    fontWeight: "600",
+    textAlign: "center",
+    color: "#fff"
   },
   textInputStyle: {
     textAlign: 'center',

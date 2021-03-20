@@ -14,9 +14,9 @@ class Aboutscreen extends Component {
             this.props.navigation.navigate('Home');
           }}
         />
-        <Text style={styles.text}>sidharth</Text>
-        <Text style={styles.text}>loves you</Text>
-        <Text style={styles.text}>3000</Text>
+        <Text style={styles.text}>Developed</Text>
+        <Text style={styles.text}>with <Icon style={{marginLeft: 20}} name="heart" size={40} color="#EA0F0F" /> by</Text>
+        <Text style={styles.text}>Anton Chepur</Text>
       </View>
     );
   }

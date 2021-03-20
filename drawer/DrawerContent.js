@@ -18,7 +18,7 @@ export function DrawerContent(props) {
   init()
   return (
     <View style={styles.drawer}>
-      <Icon style={styles.icon} name="meh" size={100} color="#fff" />
+
 
       <TouchableOpacity
         style={styles.links}
@@ -39,11 +39,9 @@ export function DrawerContent(props) {
       <TouchableOpacity
         style={styles.links}
         onPress={() => {
-          props.navigation.navigate('Settings', {
-            setVibro: (value) => setVibro(value)
-          });
+          props.navigation.navigate('Settings');
         }}>
-        <Text style={styles.text}>Settings</Text>
+        <Text style={styles.text}>{IMLocalized("Settings")} </Text>
       </TouchableOpacity>
       {
         Platform.OS === "android" && <TouchableOpacity
@@ -54,14 +52,6 @@ export function DrawerContent(props) {
         <Text style={styles.text}>{IMLocalized("Exit")} </Text>
       </TouchableOpacity>
       }
-      <TouchableOpacity style={styles.footer}>
-        <Text style={styles.footertext}>
-          Developed with Love{'  '}
-          <Icon style={{marginLeft: 20}} name="heart" size={11} color="#fff" />
-        </Text>
-        <Text style={styles.footertext}>by Siddhartth</Text>
-        <Text style={styles.footertext}>version 0.0.3</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -69,11 +59,13 @@ export function DrawerContent(props) {
 const styles = StyleSheet.create({
   drawer: {
     flex: 1,
-    width: constants.MAX_WIDTH * 0.5
+    width: constants.MAX_WIDTH * 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   links: {
     // backgroundColor: 'grey',
-    height: 60,
+    marginVertical: constants.MAX_HEIGHT * 0.05,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 2,
