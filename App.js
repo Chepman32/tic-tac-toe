@@ -53,6 +53,7 @@ export default function App() {
         drawerContent={(props) => <DrawerContent {...props} />}>
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Settings" component={Settings} />
+        <Drawer.Screen name="About" component={NotificationsScreen} />
       </Drawer.Navigator>
       <StatusBar hidden={true}/>
     </NavigationContainer>

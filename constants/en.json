@@ -1,6 +1,7 @@
 {
     "About": "About",
-    "Home": "About",
-    "Exit": "About",
-    "Reset": "About"
+    "Home": "Home",
+    "Exit": "Exit",
+    "Reset": "Reset",
+    "Checkout this awesome Tictactoe Game | https://play.google.com/store/apps/developer?id=Anton+Chepur": "Checkout this awesome Tictactoe Game | https://play.google.com/store/apps/developer?id=Anton+Chepur"
 }

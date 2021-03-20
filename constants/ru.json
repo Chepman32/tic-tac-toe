@@ -1,7 +1,10 @@
 {
-    "About": "О",
-    "Home": "Главная страница",
+    "About": "О разработчике",
+    "Home": "Домой",
     "Exit": "Выход",
     "Reset": "Сброс",
-    "New Game": "Новая игра"
+    "New Game": "Новая игра",
+    "Player ": "Игрок ",
+    " turn": " ходит",
+    "Checkout this awesome Tictactoe Game | https://play.google.com/store/apps/developer?id=Anton+Chepur": "Эту и другие мои игры вы можете скачать в Google Play  | https://play.google.com/store/apps/developer?id=Anton+Chepur"
     }

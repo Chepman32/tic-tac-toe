@@ -1,4 +1,5 @@
-import React from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -9,9 +10,11 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
+import { constants } from '../constants/Constants';
 import { IMLocalized, init } from '../localization';
 
 export function DrawerContent(props) {
+  const [vibro, setVibro] = useState("")
   init()
   return (
     <View style={styles.drawer}>
@@ -20,21 +23,25 @@ export function DrawerContent(props) {
       <TouchableOpacity
         style={styles.links}
         onPress={() => {
-          props.navigation.navigate('Home');
+          props.navigation.navigate('Home', {
+            vibro
+          });
         }}>
         <Text style={styles.text}>{IMLocalized("Home")} </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.links}
         onPress={() => {
-          props.navigation.navigate('Notifications');
+          props.navigation.navigate('About');
         }}>
         <Text style={styles.text}>{IMLocalized("About")} </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.links}
         onPress={() => {
-          props.navigation.navigate('Settings');
+          props.navigation.navigate('Settings', {
+            setVibro: (value) => setVibro(value)
+          });
         }}>
         <Text style={styles.text}>Settings</Text>
       </TouchableOpacity>
@@ -62,7 +69,7 @@ export function DrawerContent(props) {
 const styles = StyleSheet.create({
   drawer: {
     flex: 1,
-    width: 250
+    width: constants.MAX_WIDTH * 0.5
   },
   links: {
     // backgroundColor: 'grey',
@@ -72,13 +79,13 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   text: {
-    fontSize: 25,
+    fontSize: constants.MAX_WIDTH * 0.05,
     color: '#fff',
   },
   icon: {
     alignSelf: 'center',
-    marginTop: 40,
-    marginBottom: 50,
+    marginTop: constants.MAX_HEIGHT * 0.1,
+    marginBottom: constants.MAX_HEIGHT * 0.1,
   },
   footertext: {
     color: '#fff',

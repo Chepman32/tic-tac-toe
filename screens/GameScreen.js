@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import Board from '../components/Board';
 import {
   StyleSheet,
@@ -13,10 +13,12 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { constants } from '../constants/Constants';
 import { IMLocalized, init } from '../localization';
+import AsyncStorage from '@react-native-community/async-storage';
 
-export default class Game extends Component {
+class Game extends Component {
   constructor(props) {
     super(props);
+    init()
     this.state = {
       history: [
         {
@@ -43,7 +45,9 @@ export default class Game extends Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
-    Vibration.vibrate(50);
+    console.log(this.props.vibration)
+    console.log(this.props.vibration)
+    this.props.vibration === "On" ? Vibration.vibrate(50) : null
   }
 
   jumpTo(step) {
@@ -102,7 +106,7 @@ export default class Game extends Component {
       try {
         const result = await Share.share({
           message:
-            'Checkout this awesome Tictactoe Game | https://play.google.com/store/apps/developer?id=Anton+Chepur',
+            IMLocalized('Checkout this awesome Tictactoe Game | https://play.google.com/store/apps/developer?id=Anton+Chepur'),
         });
         if (result.action === Share.sharedAction) {
           if (result.activityType) {
@@ -122,7 +126,7 @@ export default class Game extends Component {
     if (winner) {
       status = `${winner} Won!`;
     } else {
-      status = `Player ${this.state.xIsNext ? 'X' : 'O'}'s  turn`;
+      status = IMLocalized("Player ") + ` ${this.state.xIsNext ? 'X' : 'O'}` + IMLocalized(" turn");
     }
 
     return (
@@ -281,5 +285,29 @@ function calculateWinner(squares) {
   }
   return null;
 }
-
-<Icon name="sharealt" size={30} color="lightgrey" />;
+export default function GameScreenContainer({navigation}, {route}) {
+  init()
+  const [getValue, setGetValue] = useState(false);
+  useEffect(() => {
+    getValueFunction()
+    
+  })
+  useEffect(() => {
+    getValueFunction()
+    console.log("route", route)
+  }, [])
+  const getValueFunction = () => {
+    //function to get the value from AsyncStorage
+    AsyncStorage.getItem('any_key_here').then(
+      (value) => {
+        //AsyncStorage returns a promise so adding a callback to get the value
+        setGetValue(value)
+      //Setting the value in Text
+      console.log("getValueFunction", value)
+      }
+    );
+  };
+  return (
+    <Game GameScreen {...{navigation}} vibration={getValue} />
+  );
+}
