@@ -52,7 +52,7 @@ export const App = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: constants.MAX_HEIGHT * 0.03,
     justifyContent: "center",
     backgroundColor: '#000',
   },
@@ -63,10 +63,6 @@ const styles = StyleSheet.create({
     // backgroundColor: '#000',
     // color: '#fff',
     zIndex: 999,
-  },
-  textStyle: {
-    padding: 10,
-    textAlign: 'center',
   },
   buttonStyle: {
     width: constants.MAX_WIDTH * 0.9,
@@ -82,13 +78,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     color: "#fff"
-  },
-  textInputStyle: {
-    textAlign: 'center',
-    height: 40,
-    width: '100%',
-    borderWidth: 1,
-    borderColor: 'green',
   },
 });
 

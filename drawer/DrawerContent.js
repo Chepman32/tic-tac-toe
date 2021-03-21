@@ -79,14 +79,4 @@ const styles = StyleSheet.create({
     marginTop: constants.MAX_HEIGHT * 0.1,
     marginBottom: constants.MAX_HEIGHT * 0.1,
   },
-  footertext: {
-    color: '#fff',
-    opacity: 0.5,
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 20,
-    alignItems: 'center',
-    width: '100%',
-  },
 });

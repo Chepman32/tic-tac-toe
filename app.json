@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "tic-tac-toe",
-    "slug": "tic-tac-toe",
+    "name": "whack-a-mole",
+    "slug": "whack-a-mole",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,12 +17,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.tictactoe.antonchepur",
+      "buildNumber": "1.0.0",
+      "supportsTablet": true,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-2840764267461073~9170433300"
+      }
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+      "package": "com.tictactoe.antonchepur",
+      "versionCode": 1,
+      "permissions": ["WRITE_EXTERNAL_STORAGE", "VIBRATION"],
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-2840764267461073~2449397692"
       }
     },
     "web": {

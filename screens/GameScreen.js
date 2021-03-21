@@ -74,7 +74,7 @@ class Game extends Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
     const showAlert = winner || this.state.stepNumber == 9 ? true : false;
-    const title = winner ? `Winner is ${winner} !` : 'Match tied';
+    const title = winner ? IMLocalized("Winner is") + winner + "!" : 'Match tied';
 
     const moves = history.map((step, move) => {
       // const desc = move ? 'Go to move #' + move : 'Go to game start';
@@ -171,13 +171,13 @@ class Game extends Component {
               cancelButtonStyle={{
                 ...styles.newGame,
                 backgroundColor: '#1b1b1b',
-                width: 150,
+                width: constants.MAX_WIDTH * 0.5,
               }}
               cancelButtonTextStyle={styles.newText}
               confirmButtonStyle={{
                 ...styles.newGame,
                 backgroundColor: '#1b1b1b',
-                width: 150,
+                width: constants.MAX_WIDTH * 0.5,
               }}
               confirmButtonTextStyle={styles.newText}
               actionContainerStyle={{flexDirection: 'column'}}
@@ -192,7 +192,7 @@ class Game extends Component {
               showCancelButton={true}
               showConfirmButton={true}
               cancelText={IMLocalized("New Game")}
-              confirmText={'Share'}
+              confirmText={IMLocalized("Share")}
               onCancelPressed={() => {
                 this.newGame();
               }}
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   status: {
     color: '#fff',
     marginVertical: 10,
-    fontSize: 30,
+    fontSize: constants.MAX_WIDTH * 0.08,
   },
   game: {
     justifyContent: 'center',
@@ -233,13 +233,14 @@ const styles = StyleSheet.create({
   },
   newGame: {
     backgroundColor: '#1b1b1b',
-    width: 130,
     height: constants.MAX_HEIGHT * 0.08,
     borderRadius: constants.MAX_HEIGHT * 0.042,
     justifyContent: 'center',
     alignItems: 'center',
   },
   newText: {
+    width: constants.MAX_WIDTH,
+    textAlign: "center",
     fontSize: constants.MAX_HEIGHT * 0.04,
     color: 'lightgrey',
   },
@@ -262,6 +263,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: constants.MAX_HEIGHT * 0.05,
+    textAlign: "center",
     color: '#fff',
   },
 });

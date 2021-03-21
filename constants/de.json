@@ -1,6 +1,18 @@
 {
-    "About": "Über",
-    "Home": "Startseite",
-    "Exit": "Ausfahrt",
-    "Reset": "Zurücksetzen"
-}
+    "About" :" Über den Entwickler",
+    "Home": "Nach Hause",
+    "Exit": "Beenden",
+    "Reset": "Zurücksetzen",
+    "New Game": "Neues Spiel",
+    "Player": "Spieler ",
+    "turn": "geht",
+    "Settings": "Einstellungen",
+    "VIBRATION OFF": "VIBRATION AUS",
+    "VIBRATION ON": "VIBRATION EIN",
+    "Winner is": "Gewinner",
+    "Checkout this awesome Tictactoe Game in": "Dieses und meine anderen Spiele kannst du in",
+    "Share": "Teilen",
+    "Developed": "Entwickelt",
+    "with": "mit",
+    "by": " "
+    }
