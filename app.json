@@ -27,7 +27,7 @@
     "android": {
       "package": "com.tictactoe.antonchepur",
       "versionCode": 1,
-      "permissions": ["WRITE_EXTERNAL_STORAGE", "VIBRATION"],
+      "permissions": ["WRITE_EXTERNAL_STORAGE", "VIBRATE"],
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-2840764267461073~2449397692"
       }

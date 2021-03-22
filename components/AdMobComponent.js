@@ -8,20 +8,27 @@ import {
   import React, { Component } from 'react';
   import {StyleSheet, Text, View, Button} from 'react-native';
   export class AdMobComponent extends Component {
-componentDidMount() {}
+async componentDidMount() {
+  await setTestDeviceIDAsync('EMULATOR');
+  console.log(this.props)
+}
+componentDidUpdate() {
+  this.props.donate && this.showRewarded()
+}
   bannerError() {
       console.log('An error');
       return;
   }
 
   async showInterstitial() {
-    await setTestDeviceIDAsync('EMULATOR');
     await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712')
     await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
     await AdMobInterstitial.showAdAsync();
   }
-  async showRewarder() {
-    await setTestDeviceIDAsync('EMULATOR');
+  _handlePress = async () => {
+    await AdMobRewarded.showAdAsync();
+    }
+  async showRewarded() {
     await AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917'); // Test ID, Replace with your-admob-unit-id
 await AdMobRewarded.requestAdAsync();
 await AdMobRewarded.showAdAsync();
@@ -33,7 +40,7 @@ await AdMobRewarded.showAdAsync();
               <Button title="Interstitial"
                       onPress={this.showInterstitial}
                       containerViewStyle={styles.interstitialBanner}/>
-                      <Text onPress={this.showRewarder} style={{fontSize: 40, color: "#fff"}} >Show</Text>
+                      <Text onPress={this.showRewarded} style={{fontSize: 40, color: "#fff"}} >Show</Text>
               <AdMobBanner
                   style={styles.bottomBanner}
                   bannerSize="fullBanner"

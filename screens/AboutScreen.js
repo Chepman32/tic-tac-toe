@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { AdMobComponent } from '../components/AdMobComponent';
 import { IMLocalized, init } from '../localization';
 class Aboutscreen extends Component {
   constructor(props) {
     super(props)
     init()
-    this.state = {
-      donate: true
-    }
   }
   render() {
     return (
@@ -29,10 +25,8 @@ class Aboutscreen extends Component {
           </Text>
         <Text style={styles.text}>Anton Chepur</Text>
         <TouchableOpacity onPess={() => this.setState({donate: true})}>
-        <Text onPess={() => this.setState({donate: true})} style={styles.text}>Donate </Text>
         </TouchableOpacity>
         
-        <AdMobComponent donate={this.state.donate} />
       </View>
     );
   }

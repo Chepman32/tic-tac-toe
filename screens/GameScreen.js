@@ -11,9 +11,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { constants } from '../constants/Constants';
+import { constants, showInterstitial } from '../constants/Constants';
 import { IMLocalized, init } from '../localization';
 import AsyncStorage from '@react-native-community/async-storage';
+import { AdMobComponent } from '../components/AdMobComponent';
 
 class Game extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Game extends Component {
     };
   }
   componentDidMount() {
-    init()
+    showInterstitial()
   }
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
@@ -74,7 +75,7 @@ class Game extends Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
     const showAlert = winner || this.state.stepNumber == 9 ? true : false;
-    const title = winner ? IMLocalized("Winner is") + winner + "!" : 'Match tied';
+    const title = winner ? IMLocalized("Winner is") + " " + winner + "!" : 'Match tied';
 
     const moves = history.map((step, move) => {
       // const desc = move ? 'Go to move #' + move : 'Go to game start';
@@ -210,6 +211,7 @@ class Game extends Component {
             {moves}
           </View>
         </View>
+        
       </>
     );
   }
